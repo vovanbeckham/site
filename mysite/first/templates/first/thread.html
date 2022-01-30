@@ -1,0 +1,53 @@
+{% extends 'first/base.html' %}
+
+{% block content %}
+
+<script>
+function qqq(value)
+{
+    //document.forms[0].message.value = value+"\n"
+    document.forms[0].user_id.value = value
+
+}
+
+</script>
+
+{% for p in posts %}
+    {% if p.id == post_id %}
+    <h2>Тема:{{ p.thread_name }} ({{p.m_max}})</h2>
+    {% if p.m_max > mess.count %}
+        <form id="xxx" action="{% url 'post' post_id %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Добавить</button>
+        </form>
+    {% else %}
+        <h2> трейд закрыт </h2>
+{% endif %}
+{{ break }}
+{% endif %}
+{% endfor %}
+<ul>
+
+
+    {% for m in mess %}
+    <li>
+
+        <p>Аноним
+            Дата: {{m.date_create|date:"d-m-Y H:i:s"}}
+                                                        <a id="{{m.pk}}" href="#xxx" value="{{m.pk}}" onclick="qqq(id)">№{{m.pk}}</a>
+
+        ({{forloop.counter}})
+        </p>
+        <h4>Сообщение: {{m.message}}</h4>
+            {% if m.user_id > 0 %}
+                <a href="#{{m.user_id}}"> >>{{m.user_id}} </a>
+            {% endif %}
+        <hr>
+    </li>
+
+    {% endfor %}
+
+</ul>
+{% endblock %}
+

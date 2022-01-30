@@ -1,0 +1,20 @@
+{% extends 'first/base.html' %}
+
+{% block content %}
+<h1>{{title}}</h1>
+
+
+<ul>
+    {% for p in posts %}
+    <li>
+        <p>Дата: {{p.time_update|date:"d-m-Y H:i:s"}}
+
+            кол. сообщ. {{p.count}}</p>
+        <a href="{{ p.get_absolute_url }}"><h3>{{p.thread_name}}</h3></a>
+
+        <hr>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

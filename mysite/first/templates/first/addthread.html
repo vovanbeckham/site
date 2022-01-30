@@ -1,0 +1,39 @@
+{% extends 'first/base.html' %}
+ 
+{% block content %}
+
+
+<form name="main" id="xxx" action="{% url 'add_thread' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Добавить</button>
+</form>
+
+
+
+<H1>Отправьте телеграмму</H1>
+<FORM NAME="Sel2">
+    <label><INPUT TYPE="radio" NAME="Code" VALUE="Good"
+                  onClick="if(this.checked) CheckRadio(this.form,this.value);"> Явка в норме
+    </label>
+    <BR>
+    <label><INPUT TYPE="radio" NAME="Code" VALUE="Bad"
+                  onClick="if(this.checked) CheckRadio(this.form,this.value);"> Явка провалена
+    </label>
+    <TEXTAREA NAME="Letter" ROWS=3 COLS=35></TEXTAREA>
+    <INPUT TYPE="button" VALUE="Готово" onClick="alert(document.Sel2.Letter.value);">
+    <INPUT TYPE="reset" VALUE="Сброс">
+</FORM>
+
+<script language="JavaScript">
+
+
+function qqq(value)
+{
+    document.forms[1].Letter.value = value;
+}
+
+</script>
+
+<a id="55" href="#xxx" VALUE="55"  onclick="qqq(id);">55</a>
+{% endblock %}
